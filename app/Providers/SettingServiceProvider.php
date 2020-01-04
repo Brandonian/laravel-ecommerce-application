@@ -5,6 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Schema;
+use Config;
+
+/******TODO: MAKE ABILITY TO UPDATE ONLY THE FIELD THAT HAS VALUE IN IT **********/
 
 class SettingServiceProvider extends ServiceProvider
 {
@@ -34,7 +37,10 @@ class SettingServiceProvider extends ServiceProvider
             $settings = Setting::all();
             foreach($settings as $key => $setting)
             {
-                Config::set('settings.' . $setting->key, $setting->value);
+                if($setting->value != "")
+                {
+                    Config::set('settings.' . $setting->key, $setting->value);
+                }
             }
         }
     }

@@ -78,7 +78,7 @@ class BaseController extends Controller
     protected function responseRedirectBack($message, $type = 'info', $error = false, $withOldInputWhenError = false)
     {
         $this->setFlashMessage($message, $type);
-        $this->showFlashMessages();
+        $this->showFlashMessage();
 
         return redirect()->back();
     }

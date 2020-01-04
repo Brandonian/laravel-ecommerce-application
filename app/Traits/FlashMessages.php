@@ -81,7 +81,7 @@ trait FlashMessages
     /**
      * Flushing flash messages to Laravel's session
      */
-    protected function showFlashMessages()
+    protected function showFlashMessage()
     {
         session()->flash('error', $this->errorMessages);
         session()->flash('info', $this->infoMessages);
