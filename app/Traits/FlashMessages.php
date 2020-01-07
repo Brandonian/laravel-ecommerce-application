@@ -71,10 +71,10 @@ trait FlashMessages
     protected function getFlashMessage()
     {
         return [
-            'error'             =>      $this->errorMessages,
-            'info'              =>      $this->infoMessages,
-            'success'           =>      $this->successMessages,
-            'warning'           =>      $this->warningMessages,
+            'error'   => $this->errorMessages,
+            'info'    => $this->infoMessages,
+            'success' => $this->successMessages,
+            'warning' => $this->warningMessages,
         ];
     }
 
