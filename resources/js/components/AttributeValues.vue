@@ -57,19 +57,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="value in values" :key="value.currentId">
-                            <td style="width: 25%" class="text-center">{{ value.id}}</td>
-                            <td style="width: 25%" class="text-center">{{ value.value}}</td>
-                            <td style="width: 25%" class="text-center">{{ value.price}}</td>
-                            <td style="width: 25%" class="text-center">
-                                <button class="btn btn-sm btn-primary" @click.stop="editAttributeValue(value)">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button class="btn btn-sm btn-danger" @click.stop="deleteAttributeValue(value)">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                            <tr v-for="value in values">
+                                <td style="width: 25%" class="text-center">{{ value.id }}</td>
+                                <td style="width: 25%" class="text-center">{{ value.value }}</td>
+                                <td style="width: 25%" class="text-center">{{ value.price }}</td>
+                                <td style="width: 25%" class="text-center">
+                                    <button class="btn btn-sm btn-primary" @click.stop="editAttributeValue(value)">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" @click.stop="deleteAttributeValue(value)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
