@@ -8,6 +8,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('backend/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/font-awesome/4.7.0/css/font-awesome.min.css') }}">
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
 </head>
 <body class="app sidebar-mini rtl">
     @include('admin.partials.header')
