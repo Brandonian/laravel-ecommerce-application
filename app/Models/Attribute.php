@@ -26,8 +26,8 @@ class Attribute extends Model
      * @var array
      */
     protected $casts  = [
-        'is_filterable' => 'boolean',
-        'is_required'   => 'boolean',
+        'is_filterable' =>  'boolean',
+        'is_required'   =>  'boolean',
     ];
 
     /**

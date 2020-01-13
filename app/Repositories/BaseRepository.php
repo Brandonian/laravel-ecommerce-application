@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
  */
 class BaseRepository implements BaseContract
 {
+    /**
+     * @var Model
+     */
     protected $model;
 
     /**
@@ -109,4 +112,3 @@ class BaseRepository implements BaseContract
         return $this->model->find($id)->delete();
     }
 }
-

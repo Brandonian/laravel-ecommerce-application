@@ -20,7 +20,7 @@ class CategoryRepository extends BaseRepository implements CategoryContract
     use UploadAble;
 
     /**
-     * CategoryReository constructor.
+     * CategoryRepository constructor.
      * @param Category $model
      */
     public function __construct(Category $model)
@@ -47,11 +47,14 @@ class CategoryRepository extends BaseRepository implements CategoryContract
      */
     public function findCategoryById(int $id)
     {
-        try{
+        try {
             return $this->findOneOrFail($id);
+
         } catch (ModelNotFoundException $e) {
+
             throw new ModelNotFoundException($e);
         }
+
     }
 
     /**
@@ -65,7 +68,7 @@ class CategoryRepository extends BaseRepository implements CategoryContract
 
             $image = null;
 
-            if($collection->has('image') && ($params['image'] instanceof UploadedFile)) {
+            if ($collection->has('image') && ($params['image'] instanceof  UploadedFile)) {
                 $image = $this->uploadOne($params['image'], 'categories');
             }
 
@@ -79,6 +82,7 @@ class CategoryRepository extends BaseRepository implements CategoryContract
             $category->save();
 
             return $category;
+
         } catch (QueryException $exception) {
             throw new InvalidArgumentException($exception->getMessage());
         }
@@ -94,8 +98,9 @@ class CategoryRepository extends BaseRepository implements CategoryContract
 
         $collection = collect($params)->except('_token');
 
-        if($collection->has('image') && ($params['image'] instanceof UploadedFile)) {
-            if($category->image != null) {
+        if ($collection->has('image') && ($params['image'] instanceof  UploadedFile)) {
+
+            if ($category->image != null) {
                 $this->deleteOne($category->image);
             }
 
@@ -120,12 +125,32 @@ class CategoryRepository extends BaseRepository implements CategoryContract
     {
         $category = $this->findCategoryById($id);
 
-        if($category->image != null) {
+        if ($category->image != null) {
             $this->deleteOne($category->image);
         }
 
         $category->delete();
 
         return $category;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function treeList()
+    {
+        return Category::orderByRaw('-name ASC')
+            ->get()
+            ->nest()
+            ->setIndent('|–– ')
+            ->listsFlattened('name');
+    }
+
+    public function findBySlug($slug)
+    {
+        return Category::with('products')
+            ->where('slug', $slug)
+            ->where('menu', 1)
+            ->first();
     }
 }

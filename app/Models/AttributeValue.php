@@ -4,10 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
-     * Class AttributeValue
-     * @package App\Models
-     */
 class AttributeValue extends Model
 {
     /**
@@ -26,7 +22,7 @@ class AttributeValue extends Model
      * @var array
      */
     protected $casts = [
-        'attribute_id' => 'integer',
+        'attribute_id'  =>  'integer',
     ];
 
     /**

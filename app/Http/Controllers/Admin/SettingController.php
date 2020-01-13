@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\BaseController;
-use Illuminate\Http\Request;
-use UploadAble;
 use App\Models\Setting;
+use App\Traits\UploadAble;
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use App\Http\Controllers\BaseController;
 
+/**
+ * Class SettingController
+ * @package App\Http\Controllers\Admin
+ */
 class SettingController extends BaseController
 {
+    use UploadAble;
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -20,6 +27,7 @@ class SettingController extends BaseController
 
     /**
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request)
     {

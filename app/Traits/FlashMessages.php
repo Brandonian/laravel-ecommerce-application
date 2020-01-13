@@ -36,27 +36,27 @@ trait FlashMessages
     {
         $model = 'infoMessages';
 
-        switch($type) {
-            case 'info':{
+        switch ($type) {
+            case 'info': {
                 $model = 'infoMessages';
             }
                 break;
-            case 'error':{
+            case 'error': {
                 $model = 'errorMessages';
             }
                 break;
-            case 'success':{
+            case 'success': {
                 $model = 'successMessages';
             }
                 break;
-            case 'warning':{
+            case 'warning': {
                 $model = 'warningMessages';
             }
                 break;
         }
 
-        if(is_array($message)){
-            foreach($message as $key => $value)
+        if (is_array($message)) {
+            foreach ($message as $key => $value)
             {
                 array_push($this->$model, $value);
             }
@@ -68,20 +68,20 @@ trait FlashMessages
     /**
      * @return array
      */
-    protected function getFlashMessage()
+    protected function getFlashMessages()
     {
         return [
-            'error'   => $this->errorMessages,
-            'info'    => $this->infoMessages,
-            'success' => $this->successMessages,
-            'warning' => $this->warningMessages,
+            'error'     =>  $this->errorMessages,
+            'info'      =>  $this->infoMessages,
+            'success'   =>  $this->successMessages,
+            'warning'   =>  $this->warningMessages,
         ];
     }
 
     /**
      * Flushing flash messages to Laravel's session
      */
-    protected function showFlashMessage()
+    protected function showFlashMessages()
     {
         session()->flash('error', $this->errorMessages);
         session()->flash('info', $this->infoMessages);
@@ -89,4 +89,3 @@ trait FlashMessages
         session()->flash('warning', $this->warningMessages);
     }
 }
-

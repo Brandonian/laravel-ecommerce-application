@@ -5,10 +5,6 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Brand
- * @package App\Models
- */
 class Brand extends Model
 {
     /**

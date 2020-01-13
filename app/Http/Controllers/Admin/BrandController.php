@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 use App\Contracts\BrandContract;
+use App\Http\Controllers\BaseController;
 
 class BrandController extends BaseController
 {
@@ -84,18 +84,18 @@ class BrandController extends BaseController
     public function update(Request $request)
     {
         $this->validate($request, [
-            'name'  => 'required|max:191',
-            'image' => 'mimes:png,jpg,jpeg|max:1000'
+            'name'      =>  'required|max:191',
+            'image'     =>  'mimes:jpg,jpeg,png|max:1000'
         ]);
 
         $params = $request->except('_token');
 
         $brand = $this->brandRepository->updateBrand($params);
 
-        if(!$brand){
+        if (!$brand) {
             return $this->responseRedirectBack('Error occurred while updating brand.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.brands.index', 'Brand updated successfully', 'success', false, false);
+        return $this->responseRedirectBack('Brand updated successfully' ,'success',false, false);
     }
 
     /**

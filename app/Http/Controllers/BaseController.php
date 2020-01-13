@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\FlashMessages;
 
+/**
+ * Class BaseController
+ * @package App\Http\Controllers
+ */
 class BaseController extends Controller
 {
     use FlashMessages;
 
+    /**
+     * @var null
+     */
     protected $data = null;
 
     /**
@@ -28,7 +35,7 @@ class BaseController extends Controller
     protected function showErrorPage($errorCode = 404, $message = null)
     {
         $data['message'] = $message;
-        return response()->view('errors.' . $errorCode, $data, $errorCode);
+        return response()->view('errors.'.$errorCode, $data, $errorCode);
     }
 
     /**
@@ -41,14 +48,14 @@ class BaseController extends Controller
     protected function responseJson($error = true, $responseCode = 200, $message = [], $data = null)
     {
         return response()->json([
-            'error'         => $error,
+            'error'         =>  $error,
             'response_code' => $responseCode,
             'message'       => $message,
-            'data'          => $data
+            'data'          =>  $data
         ]);
     }
 
-     /**
+    /**
      * @param $route
      * @param $message
      * @param string $type
@@ -59,9 +66,9 @@ class BaseController extends Controller
     protected function responseRedirect($route, $message, $type = 'info', $error = false, $withOldInputWhenError = false)
     {
         $this->setFlashMessage($message, $type);
-        $this->showFlashMessage();
+        $this->showFlashMessages();
 
-        if($error && $withOldInputWhenError) {
+        if ($error && $withOldInputWhenError) {
             return redirect()->back()->withInput();
         }
 
@@ -78,7 +85,7 @@ class BaseController extends Controller
     protected function responseRedirectBack($message, $type = 'info', $error = false, $withOldInputWhenError = false)
     {
         $this->setFlashMessage($message, $type);
-        $this->showFlashMessage();
+        $this->showFlashMessages();
 
         return redirect()->back();
     }

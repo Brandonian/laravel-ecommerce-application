@@ -2,15 +2,18 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Config;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Schema;
-use Config;
-
-/******TODO: MAKE ABILITY TO UPDATE ONLY THE FIELD THAT HAS VALUE IN IT **********/
+use Illuminate\Support\ServiceProvider;
 
 class SettingServiceProvider extends ServiceProvider
 {
+    /**
+     * @var bool
+     */
+    protected $defer = false;
+
     /**
      * Register services.
      *
@@ -33,14 +36,11 @@ class SettingServiceProvider extends ServiceProvider
     public function boot()
     {
         // only use the Settings package if the Settings table is present in the database
-        if(!\App::runningInConsole() && count(Schema::getColumnListing('settings'))){
+        if (!\App::runningInConsole() && count(Schema::getColumnListing('settings'))) {
             $settings = Setting::all();
-            foreach($settings as $key => $setting)
+            foreach ($settings as $key => $setting)
             {
-                if($setting->value != "")
-                {
-                    Config::set('settings.' . $setting->key, $setting->value);
-                }
+                Config::set('settings.'.$setting->key, $setting->value);
             }
         }
     }

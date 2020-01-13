@@ -3,9 +3,11 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Auth\AuthenticationException;
+use Request;
+use Response;
 use Illuminate\Support\Arr;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -33,8 +35,6 @@ class Handler extends ExceptionHandler
      *
      * @param  \Exception  $exception
      * @return void
-     *
-     * @throws \Exception
      */
     public function report(Exception $exception)
     {
@@ -46,9 +46,7 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \Exception
+     * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
@@ -62,7 +60,7 @@ class Handler extends ExceptionHandler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        if($request->expectsJson()){
+        if ($request->expectsJson()) {
             return response()->json(['message' => $exception->getMessage()], 401);
         }
         $guard = Arr::get($exception->guards(), 0);

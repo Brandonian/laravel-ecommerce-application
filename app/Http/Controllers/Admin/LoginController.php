@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Auth;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -29,7 +29,7 @@ class LoginController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showLoginForm()
     {
@@ -58,7 +58,7 @@ class LoginController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function logout(Request $request)
     {
