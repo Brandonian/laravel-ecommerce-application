@@ -21,6 +21,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "vue-swal": "^0.1.0"
         "serialize-javascript": "^4.0.0",
         "vue-swal": "^0.1.0",
         "set-value": ">=2.0.1",
